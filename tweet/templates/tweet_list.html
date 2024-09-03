@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}
+Harsh and Tweet
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-6">Tweet List</h1>
+<a href="{% url 'tweet_create' %}" class="btn btn-primary mb-2">Create Tweet</a>
+<div class="container row gap-3">
+    {% for tweet in tweets %}
+    <div class="card" style="width: 18rem;">
+        {% if tweet.photo %}
+            <img src="{{ tweet.photo.url }}" alt="Tweet Photo">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{tweet.username}}</h5>
+          <p class="card-text">{{tweet.text}}</p>
+          {% if user == tweet.user %}
+          <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+</div>
+{% endblock %}

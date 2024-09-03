@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}
+Harsh and Tweet
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center ">Tweet Form</h1>
+<h2>{%if form.instance.id %}Edit{%else%}Create{%endif%} Tweet 
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{% url 'tweet_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</h2>
+{% endblock %}
